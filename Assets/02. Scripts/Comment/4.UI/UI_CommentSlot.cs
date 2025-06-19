@@ -10,9 +10,12 @@ public class UI_CommentSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _modifiedTextUI;
 
     [SerializeField] private TextMeshProUGUI _contentTextUI;
-    private CommentDTO _comment;
+    [SerializeField] private GameObject DetailScreen;
 
-    public void Init(CommentDTO comment)
+    private CommentDTO _comment;
+    public CommentDTO CommentDTO => _comment;
+
+    public void Refresh(CommentDTO comment)
     {
         _comment = comment;
         _nameTextUI.text = _comment.AuthorNickname;
@@ -20,6 +23,11 @@ public class UI_CommentSlot : MonoBehaviour
         _modifiedTextUI.text = _comment.IsModified == true ? "수정됨" : "";
 
         _contentTextUI.text = _comment.Content;
+    }
+
+    public void OnClickDetailButton()
+    {
+        DetailScreen.SetActive(true);
     }
 
     private string FormatKoreanTimeAgo(DateTime dateTime)
