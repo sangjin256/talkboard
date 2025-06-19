@@ -107,7 +107,7 @@ public class UI_LoginScene : MonoBehaviour
         }
         else
         {
-            LoginInputFields.ResultText.text = "이메일이 중복되었습니다.";
+            LoginInputFields.ResultText.text = result.Message;
             SignupInputFields.ResultText.transform.DOShakePosition(0.5f, 15);
             return;
         }
@@ -126,26 +126,23 @@ public class UI_LoginScene : MonoBehaviour
 
         string pwd = LoginInputFields.PasswordInputField.text;
 
-        //if (await AccountManager.Instance.TryLogin(id, pwd))
-        //{
-        //    // 4. 맞다면 로그인
-        //    LoginInputFields.ResultText.text = "로그인 성공!";
-        //    SceneManager.LoadScene(1);
-        //}
-        //else
-        //{
-        //    LoginInputFields.ResultText.text = "아이디와 비밀번호를 확인해주세요.";
-        //    LoginInputFields.ResultText.transform.DOShakePosition(0.5f, 15);
-        //    return;
-        //}
-
+        Result result = await AccountManager.Instance.TryLogin(id, pwd);
+        if (result.IsSuccess)
+        {
+            LoginInputFields.ResultText.text = result.Message;
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            LoginInputFields.ResultText.text = result.Message;
+            LoginInputFields.ResultText.transform.DOShakePosition(0.5f, 15);
+            return;
+        }
     }
 
     public void LoginCheck()
     {
         string id = LoginInputFields.IDInputField.text;
         string password = LoginInputFields.PasswordInputField.text;
-
-        //LoginInputFields.ConfirmButton.enabled = !string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(password);
     }
 }
