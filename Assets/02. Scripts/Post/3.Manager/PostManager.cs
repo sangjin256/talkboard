@@ -35,7 +35,7 @@ public class PostManager : BehaviourSingleton<PostManager>
             return new Result(false, "게시글은 최소 1자 이상이어야 합니다.");
         }
         
-        bool success = await _repository.SavePostAsync(post.ToDTO());
+        bool success = await _repository.AddPostAsync(post.ToDTO());
         return new Result(success, success ? "게시글을 작성했습니다." : "게시글 작성 실패");
     }
 

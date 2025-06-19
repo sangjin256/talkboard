@@ -24,7 +24,7 @@ public class PostContentTest : MonoBehaviour
         string email = "user1@test.com";
         string nickname = "테스트유저";
         string content = "테스트게시글입니다."; // <- 여기에 길이 제한 걸 수 있음
-        Post post = new Post("", email, nickname, content, DateTime.UtcNow.AddHours(9));
+        Post post = new Post("", email, nickname, content, DateTime.UtcNow);
 
         if (string.IsNullOrWhiteSpace(content) || content.Trim().Length < 1)
         {
@@ -72,7 +72,7 @@ public class PostContentTest : MonoBehaviour
             Debug.Log("게시글이 없습니다.");
             return;
         }
-
+        
         var firstPost = posts[0];
         string newContent = "수정된 내용입니다.";
 

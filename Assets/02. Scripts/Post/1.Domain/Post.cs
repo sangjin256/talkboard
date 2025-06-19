@@ -89,6 +89,7 @@ public class Post
             {
                 Content = newContent;
                 IsModified = true;
+                return true;
             }
         }
 
@@ -129,7 +130,7 @@ public class Post
 
     public PostDTO ToDTO()
     {
-        return new  PostDTO(Id, AuthorEmail, AuthorNickname, Content, CommentCount, CreatedAt);
+        return new  PostDTO(Id, AuthorEmail, AuthorNickname, Content, CommentCount, CreatedAt, IsModified);
     }
 }
 
