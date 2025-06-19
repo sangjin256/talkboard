@@ -51,14 +51,25 @@ public class Post
         IsModified = false;
     }
 
-    // 게시글 수정: 본문 내용을 바꾸고 IsModified를 true로 바꾼다.
-    public void EditContent(string newContent)
+    // 게시글을 수정/삭제할 수 있는 사람인지 확인
+    private bool CanEdit(string userEmail)
     {
-        if (Content != newContent)
+        return AuthorEmail == userEmail;
+    }
+    
+    // 게시글 수정: 본문 내용을 바꾸고 IsModified를 true로 바꾼다.
+    public bool TryEditContent(string userEmail, string newContent)
+    {
+        if (CanEdit(AuthorEmail))
         {
-            Content = newContent;
-            IsModified = true;
+            if (Content != newContent)
+            {
+                Content = newContent;
+                IsModified = true;
+            }
         }
+
+        return false;
     }
 
     // 게시글 좋아요: 유저 이메일 기준으로 좋아요/좋아요 취소 처리한다.
@@ -91,12 +102,6 @@ public class Post
     public void DecreaseCommentCount()
     {
         CommentCount = Math.Max(0, CommentCount - 1);
-    }
-
-    // 게시글을 수정/삭제할 수 있는 사람인지 확인
-    public bool CanEdit(string userEmail)
-    {
-        return AuthorEmail == userEmail;
     }
 
     public PostDTO ToDTO()

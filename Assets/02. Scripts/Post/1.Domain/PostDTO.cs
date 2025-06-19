@@ -43,13 +43,23 @@ public class PostDTO
     {
         var post = new Post(Id, AuthorEmail, AuthorNickname, Content, CreatedAt);
 
-        // 댓글 수 및 수정 여부 수동 세팅
-        for (int i = 0; i < CommentCount; i++) post.IncreaseCommentCount();
-        if (IsModified) post.EditContent(Content); // 강제 수정된 걸로 표시
-
+        // 댓글 수 복원
+        for (int i = 0; i < CommentCount; i++)
+        {
+            post.IncreaseCommentCount();
+        }
+        
         // 좋아요 목록 복원
         foreach (var email in LikeUserEmails)
+        {
             post.ToggleLike(email);
+        }
+        
+        // 수정 여부 복원
+        if (IsModified)
+        {
+            post.TryEditContent(AuthorEmail, Content); // 강제 수정된 걸로 표시
+        }
 
         return post;
     }
