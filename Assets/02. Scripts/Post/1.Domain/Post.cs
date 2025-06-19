@@ -1,16 +1,35 @@
 using System;
 using System.Collections.Generic;
+using Firebase.Firestore;
 
+[FirestoreData]
 public class Post
 {
+    [FirestoreProperty]
     public string Id { get; private set; }
+    
+    [FirestoreProperty]
     public string AuthorEmail { get; private set; }
+    
+    [FirestoreProperty]
     public string AuthorNickname { get; private set; }
+    
+    [FirestoreProperty]
     public string Content { get; private set; }
+    
+    [FirestoreProperty]
     public int CommentCount { get; private set; }
+    
+    [FirestoreProperty]
     public HashSet<string> LikeUserEmails { get; private set; }
+    
+    [FirestoreProperty]
     public int LikeCount => LikeUserEmails?.Count ?? 0; // 좋아요 수는 항상 LikeUserEmails.Count로부터 계산 가능하다.
+    
+    [FirestoreProperty]
     public bool IsModified { get; private set; }
+    
+    [FirestoreProperty]
     public DateTime CreatedAt { get; private set; }
 
     public Post(string id, string authorEmail, string authorNickname, string content, DateTime createdAt)
@@ -20,15 +39,17 @@ public class Post
         {
             throw new Exception("아이디는 반드시 입력되어야 합니다.");
         }
-
-        if (string.IsNullOrEmpty(authorEmail))
+        
+        var emailSpecification = new AccountEmailSpecification();
+        if (!emailSpecification.IsSatisfiedBy(authorEmail))
         {
-            throw new Exception("이메일은 반드시 입력되어야 합니다.");
+            throw new Exception(emailSpecification.ErrorMessage);
         }
 
-        if (string.IsNullOrEmpty(authorNickname))
+        var nicknameSpecification = new AccountNicknameSpecification();
+        if (!nicknameSpecification.IsSatisfiedBy(authorNickname))
         {
-            throw new Exception("닉네임은 반드시 입력되어야 합니다.");
+            throw new Exception(nicknameSpecification.ErrorMessage);
         }
 
         if (string.IsNullOrEmpty(content))
