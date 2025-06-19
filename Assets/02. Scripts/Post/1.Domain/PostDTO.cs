@@ -8,10 +8,22 @@ public class PostDTO
     public string AuthorNickname;
     public string Content;
     public int CommentCount;
-    public List<string> LikeUserEmails;
+    public HashSet<string> LikeUserEmails;
     public int LikeCount;
     public bool IsModified;
     public DateTime CreatedAt;
+
+    public PostDTO(string id, string authorEmail, string authorNickname, string content, DateTime createdAt)
+    {
+        Id = id;
+        AuthorEmail = authorEmail;
+        AuthorNickname = authorNickname;
+        Content = content;
+        CreatedAt = createdAt;
+        CommentCount = 0;
+        LikeUserEmails = new HashSet<string>();
+        IsModified = false;
+    }
 
     public PostDTO(Post post)
     {
@@ -20,7 +32,7 @@ public class PostDTO
         AuthorNickname = post.AuthorNickname;
         Content = post.Content;
         CommentCount = post.CommentCount;
-        LikeUserEmails = new List<string>(post.LikeUserEmails);
+        LikeUserEmails = new HashSet<string>(post.LikeUserEmails);
         LikeCount = post.LikeCount;
         IsModified = post.IsModified;
         CreatedAt = post.CreatedAt;

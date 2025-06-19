@@ -98,6 +98,11 @@ public class Post
     {
         return AuthorEmail == userEmail;
     }
+
+    public PostDTO ToDTO()
+    {
+        return new  PostDTO(Id, AuthorEmail, AuthorNickname, Content, CreatedAt);
+    }
 }
 
     // 게시글 작성 -> 자기 자신을 만들 수 없다. 매니저 책임
