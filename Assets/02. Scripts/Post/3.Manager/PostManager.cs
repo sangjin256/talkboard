@@ -28,7 +28,7 @@ public class PostManager : BehaviourSingleton<PostManager>
             nickname, 
             content,
             0,
-            DateTime.UtcNow.AddHours(9)
+            DateTime.UtcNow
         );
         
         if (string.IsNullOrWhiteSpace(content) || content.Length < 1)

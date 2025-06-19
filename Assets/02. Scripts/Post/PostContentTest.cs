@@ -8,9 +8,19 @@ public class PostContentTest : MonoBehaviour
 {
     public AccountDTO dto;
     
+    public async void OnClickSignUpButton()
+    {
+        string email = "hhh@test.com";
+        string nickname = "hesther";
+        string password = "123456"; // <- 여기에 길이 제한 걸 수 있음
+        
+        dto = new AccountDTO(email, nickname, password);
+        Result result = await AccountManager.Instance.TryRegister(dto);
+    }
+    
     public async void OnClickLoginButton()
     {
-        string email = "doa@test.com";
+        string email = "hhh@test.com";
         string nickname = "hesther";
         string password = "123456"; // <- 여기에 길이 제한 걸 수 있음
         
