@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-using Firebase;
-using Firebase.Firestore;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using Firebase.Firestore;
 using System;
-using System.ComponentModel.Design;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class CommentRepository
 {
@@ -146,7 +144,7 @@ public class CommentRepository
         return comments;
     }
 
-    public async Task<List<CommentDTO>> GeCommentsByEmail(string postId, string email)
+    public async Task<List<CommentDTO>> GetCommentsByEmail(string postId, string email)
     {
         CollectionReference commentsRef = FirebaseManager.Instance.DB.Collection("posts").Document(postId).Collection("comments");
         QuerySnapshot snapshot;

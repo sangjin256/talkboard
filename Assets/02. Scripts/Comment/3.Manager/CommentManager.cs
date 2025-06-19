@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -67,8 +68,18 @@ public class CommentManager : BehaviourSingleton<CommentManager>
         return await _repository.TryDeleteComment(postId, comment.Id, email);
     }
 
-    //public async Task<List<CommentDTO>> GetAllCommentsOrderbyTime(string postId)
-    //{
+    public async Task<List<CommentDTO>> GetAllComment(string postId)
+    {
+        return await _repository.GetAllComments(postId);
+    }
 
-    //}
+    public async Task<List<CommentDTO>> GetAllCommentsOrderbyTime(string postId)
+    {
+        return await _repository.GetAllCommentsOrderbyTime(postId);
+    }
+
+    public async Task<List<CommentDTO>> GetcommentsByEmail(string postId, string email)
+    {
+        return await _repository.GetCommentsByEmail(postId, email);
+    }
 }
