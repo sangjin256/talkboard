@@ -79,6 +79,7 @@ public class PostRepository
                 { "authorEmail", post.AuthorEmail },
                 { "authorNickname", post.AuthorNickname },
                 { "content", post.Content },
+                { "commentCount", post.CommentCount },
                 { "isModified", false },
                 { "createdAt", Timestamp.FromDateTime(post.CreatedAt.ToUniversalTime()) }
             };
@@ -98,7 +99,20 @@ public class PostRepository
     {
         try
         {
-            await PostCollection.Document(post.Id).SetAsync(post, SetOptions.MergeAll);
+            // await PostCollection.Document(post.Id).SetAsync(post, SetOptions.MergeAll);
+            DocumentReference newPostRef = PostCollection.Document(post.Id);
+
+            Dictionary<string, object> postData = new Dictionary<string, object>
+            {
+                { "authorEmail", post.AuthorEmail },
+                { "authorNickname", post.AuthorNickname },
+                { "content", post.Content },
+                { "commentCount", post.CommentCount },
+                { "isModified", false },
+                { "createdAt", Timestamp.FromDateTime(post.CreatedAt.ToUniversalTime()) }
+            };
+            
+            await newPostRef.SetAsync(postData);
             return true;
 
         }
@@ -109,11 +123,14 @@ public class PostRepository
         }
     }
 
-    public async Task<bool> DeletePostAsync(string postId)
+    public async Task<bool> DeletePostAsync(PostDTO post)
     {
         try
         {
-            await PostCollection.Document(postId).DeleteAsync();
+            DocumentReference newPostRef = PostCollection.Document(post.Id);
+            
+            await newPostRef.DeleteAsync();
+
             return true;
 
         }

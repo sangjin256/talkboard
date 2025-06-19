@@ -42,7 +42,7 @@ public class PostDTO
 
     public Post ToDomain()
     {
-        var post = new Post(Id, AuthorEmail, AuthorNickname, Content, CreatedAt);
+        var post = new Post(Id, AuthorEmail, AuthorNickname, Content, CommentCount, CreatedAt);
 
         // 댓글 수 복원
         for (int i = 0; i < CommentCount; i++)
