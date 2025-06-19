@@ -28,7 +28,7 @@ public class CommentManager : BehaviourSingleton<CommentManager>
                                       nickname, 
                                       content, 
                                       false,
-                                      DateTime.UtcNow.AddHours(9)
+                                      DateTime.UtcNow
                                       );
 
         if(await _repository.TryAddComment(postId, new CommentDTO(comment)))
