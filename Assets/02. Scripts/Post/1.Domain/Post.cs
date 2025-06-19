@@ -23,7 +23,7 @@ public class Post
 
         if (string.IsNullOrEmpty(authorEmail))
         {
-            throw new Exception("이에밀은 반드시 입력되어야 합니다.");
+            throw new Exception("이메일은 반드시 입력되어야 합니다.");
         }
 
         if (string.IsNullOrEmpty(authorNickname))
@@ -68,6 +68,7 @@ public class Post
         {
             LikeUserEmails.Remove(userEmail);
         }
+        
         else
         {
             LikeUserEmails.Add(userEmail);
