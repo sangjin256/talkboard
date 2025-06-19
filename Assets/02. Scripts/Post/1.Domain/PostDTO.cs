@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Firebase.Firestore;
 
 public class PostDTO
 {
@@ -13,7 +14,7 @@ public class PostDTO
     public bool IsModified;
     public DateTime CreatedAt;
 
-    public PostDTO(string id, string authorEmail, string authorNickname, string content, int commentCount, DateTime createdAt)
+    public PostDTO(string id, string authorEmail, string authorNickname, string content, int commentCount, DateTime createdAt,  bool isModified)
     {
         Id = id;
         AuthorEmail = authorEmail;
