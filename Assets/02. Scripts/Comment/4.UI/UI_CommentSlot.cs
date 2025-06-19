@@ -12,10 +12,16 @@ public class UI_CommentSlot : MonoBehaviour
     [SerializeField] private TMP_InputField _modifyTextInputField;
 
     [SerializeField] private TextMeshProUGUI _contentTextUI;
-    [SerializeField] private GameObject DetailScreen;
+    [SerializeField] private UI_CommentDetailScreen _detailScreen;
+    [SerializeField] private GameObject _updateButtonLayout;
 
     private CommentDTO _comment;
     public CommentDTO CommentDTO => _comment;
+
+    public void Init(UI_CommentDetailScreen screen)
+    {
+        _detailScreen = screen;
+    }
 
     public void Refresh(CommentDTO comment)
     {
@@ -28,9 +34,14 @@ public class UI_CommentSlot : MonoBehaviour
         _contentTextUI.text = _comment.Content;
     }
 
-    public async void OnClickDeleteButton()
+    public void OnClickDetailButton()
     {
-        string postId = "";
+        _detailScreen.Init(this);
+    }
+
+    public async Task DeleteComment()
+    {
+        string postId = "854At4JAotmWYHAbS9wQ";
         Debug.Log("포스트 아이디 가져오기 + 예외처리");
         Result result = await CommentManager.Instance.TryDeleteComment(postId, _comment);
 
@@ -38,23 +49,22 @@ public class UI_CommentSlot : MonoBehaviour
         {
             Debug.LogError(result.Message);
         }
-
-        DetailScreen.SetActive(false);
     }
 
-    public void OnClickUpdateStartButton()
+    public void UpdateCommentStart()
     {
         _modifyTextInputField.text = _contentTextUI.text;
         _contentTextUI.gameObject.SetActive(false);
         _modifyTextInputField.gameObject.SetActive(true);
-        DetailScreen.SetActive(false);
+        _updateButtonLayout.SetActive(true);
     }
 
-    public async Task OnClickUpdateButton()
+    public async void OnClickUpdateComment()
     {
-        string postId = "";
+        string postId = "854At4JAotmWYHAbS9wQ";
         Debug.Log("포스트 아이디 가져오기");
         _modifyTextInputField.gameObject.SetActive(false);
+        _updateButtonLayout.SetActive(false);
         Result result = await CommentManager.Instance.TryUpdateComment(postId, _comment, _modifyTextInputField.text);
 
         if (result.IsSuccess)
@@ -67,6 +77,13 @@ public class UI_CommentSlot : MonoBehaviour
         }
 
         _contentTextUI.gameObject.SetActive(true);
+    }
+
+    public void OnClickCancelButton()
+    {
+        _modifyTextInputField.gameObject.SetActive(false);
+        _contentTextUI.gameObject.SetActive(true);
+        _updateButtonLayout.SetActive(false);
     }
 
     private string FormatKoreanTimeAgo(DateTime dateTime)
