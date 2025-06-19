@@ -13,14 +13,14 @@ public class PostDTO
     public bool IsModified;
     public DateTime CreatedAt;
 
-    public PostDTO(string id, string authorEmail, string authorNickname, string content, DateTime createdAt)
+    public PostDTO(string id, string authorEmail, string authorNickname, string content, int commentCount, DateTime createdAt)
     {
         Id = id;
         AuthorEmail = authorEmail;
         AuthorNickname = authorNickname;
         Content = content;
         CreatedAt = createdAt;
-        CommentCount = 0;
+        CommentCount = commentCount;
         LikeUserEmails = new HashSet<string>();
         IsModified = false;
     }

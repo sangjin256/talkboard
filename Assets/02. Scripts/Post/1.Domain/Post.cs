@@ -78,6 +78,12 @@ public class Post
         return AuthorEmail == userEmail;
     }
     
+    // 권한 확인
+    public bool CanBeDeletedBy(string userEmail)
+    {
+        return AuthorEmail == userEmail;
+    }
+    
     // 게시글 수정: 본문 내용을 바꾸고 IsModified를 true로 바꾼다.
     public bool TryEditContent(string userEmail, string newContent)
     {
@@ -127,7 +133,7 @@ public class Post
 
     public PostDTO ToDTO()
     {
-        return new  PostDTO(Id, AuthorEmail, AuthorNickname, Content, CreatedAt);
+        return new  PostDTO(Id, AuthorEmail, AuthorNickname, Content, CommentCount, CreatedAt);
     }
 }
 
