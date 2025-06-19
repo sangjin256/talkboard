@@ -1,10 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AccountDTO
 {
-    public string Email;
-    public string NickName;
-    public string Password;
+    public readonly string Email;
+    public readonly string NickName;
+    public readonly string Password;
 
     public AccountDTO(string email, string nickName, string password)
     {

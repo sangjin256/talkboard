@@ -18,6 +18,7 @@ public class FirebaseManager : BehaviourSingleton<FirebaseManager>
     private async void Awake()
     {
         await InitAsync();
+        DontDestroyOnLoad(gameObject);
     }
 
     // 파이어베이스 내 프로젝트에 연결

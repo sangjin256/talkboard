@@ -172,14 +172,3 @@ public class FirestoreTest : MonoBehaviour
     //     return comments;
     // }
 }
-
-[Serializable]
-public class Comment
-{
-    public string Id;
-    public string AuthorEmail;
-    public string AuthorNickname;
-    public string Content;
-    public bool IsModified;
-    public DateTime CreatedAt;
-}
