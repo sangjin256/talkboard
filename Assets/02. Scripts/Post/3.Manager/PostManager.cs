@@ -27,6 +27,7 @@ public class PostManager : BehaviourSingleton<PostManager>
             email, 
             nickname, 
             content,
+            0,
             DateTime.UtcNow.AddHours(9)
         );
         
@@ -55,17 +56,17 @@ public class PostManager : BehaviourSingleton<PostManager>
     }
 
     // 게시글 삭제
-    public async Task<Result> TryDeletePost(PostDTO post)
+    public async Task<Result> TryDeletePost(PostDTO oldPost)
     {
         string email = AccountManager.Instance.CurrencAccount.Email;
-        Post domainPost = post.ToDomain();
-
-        if (!domainPost.CanBeDeletedBy(email))
+        
+        Post post = oldPost.ToDomain();
+        if (!post.CanBeDeletedBy(email))
         {
             return new Result(false, "삭제 권한이 없습니다.");
         }
 
-        bool success = await _repository.DeletePostAsync(post.Id);
+        bool success = await _repository.DeletePostAsync(post.ToDTO());
         return new Result(success, success ? "게시글 삭제 완료" : "게시글 삭제 실패");
     }
 

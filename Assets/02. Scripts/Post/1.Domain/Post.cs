@@ -32,7 +32,7 @@ public class Post
     [FirestoreProperty]
     public DateTime CreatedAt { get; private set; }
 
-    public Post(string id, string authorEmail, string authorNickname, string content, DateTime createdAt)
+    public Post(string id, string authorEmail, string authorNickname, string content, int commentCount, DateTime createdAt)
     {
         // 예외 처리
         
@@ -62,8 +62,8 @@ public class Post
         AuthorEmail = authorEmail;
         AuthorNickname = authorNickname;
         Content = content;
+        CommentCount = commentCount;
         CreatedAt = createdAt;
-        CommentCount = 0;
         LikeUserEmails = new HashSet<string>();
         IsModified = false;
     }

@@ -10,8 +10,8 @@ public class PostContentTest : MonoBehaviour
     
     public async void OnClickLoginButton()
     {
-        string email = "hyeon@test.com";
-        string nickname = "tngusl";
+        string email = "doa@test.com";
+        string nickname = "hesther";
         string password = "123456"; // <- 여기에 길이 제한 걸 수 있음
         
         dto = new AccountDTO(email, nickname, password);
@@ -21,10 +21,10 @@ public class PostContentTest : MonoBehaviour
     // 1. 게시글 등록
     public async void OnClickAddPostButton()
     {
-        string email = "user1@test.com";
-        string nickname = "테스트유저";
+        string email = "doa@test.com";
+        string nickname = "hesther";
         string content = "테스트게시글입니다."; // <- 여기에 길이 제한 걸 수 있음
-        Post post = new Post("", email, nickname, content, DateTime.UtcNow);
+        Post post = new Post("", email, nickname, content, 0, DateTime.UtcNow);
 
         if (string.IsNullOrWhiteSpace(content) || content.Trim().Length < 1)
         {
@@ -105,7 +105,7 @@ public class PostContentTest : MonoBehaviour
             return;
         }
 
-        string userEmail = "user1@test.com";
+        string userEmail = "doa@test.com";
         var firstPost = posts[0].ToDomain();
         bool wasLiked = firstPost.IsLikedBy(userEmail);
 
