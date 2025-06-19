@@ -35,10 +35,6 @@ public class Post
     public Post(string id, string authorEmail, string authorNickname, string content, DateTime createdAt)
     {
         // 예외 처리
-        if (string.IsNullOrEmpty(id))
-        {
-            throw new Exception("아이디는 반드시 입력되어야 합니다.");
-        }
         
         var emailSpecification = new AccountEmailSpecification();
         if (!emailSpecification.IsSatisfiedBy(authorEmail))
@@ -57,7 +53,7 @@ public class Post
             throw new Exception("글 내용은 반드시 입력되어야 합니다.");
         }
 
-        if (CreatedAt == DateTime.MinValue)
+        if (createdAt == DateTime.MinValue)
         {
             throw new Exception("글 생성 시간은 유효해야 합니다.");
         }

@@ -23,7 +23,7 @@ public class PostContentTest : MonoBehaviour
     {
         string email = "user1@test.com";
         string nickname = "테스트유저";
-        string content = "테스트 게시글입니다."; // <- 여기에 길이 제한 걸 수 있음
+        string content = "테스트게시글입니다."; // <- 여기에 길이 제한 걸 수 있음
         Post post = new Post("", email, nickname, content, DateTime.UtcNow.AddHours(9));
 
         if (string.IsNullOrWhiteSpace(content) || content.Trim().Length < 1)
