@@ -224,8 +224,8 @@ public class CommentRepository
     {
         try
         {
-            DocumentReference commentRef = FirebaseManager.Instance.DB.Collection("posts").Document(postId).Collection("comments").Document(commentId);
-
+            DocumentReference postRef = FirebaseManager.Instance.DB.Collection("posts").Document(postId);
+            DocumentReference commentRef = postRef.Collection("comments").Document(commentId);
             DocumentSnapshot snapshot = await commentRef.GetSnapshotAsync();
 
             if (!snapshot.Exists)
@@ -238,8 +238,15 @@ public class CommentRepository
             {
                 return new Result(false, "삭제 권한 없음: 본인의 댓글만 삭제할 수 있습니다.");
             }
+            await FirebaseManager.Instance.DB.RunTransactionAsync(async transaction =>
+            {
+                DocumentSnapshot snapshot = await transaction.GetSnapshotAsync(postRef);
+                int currentCount = snapshot.ContainsField("commentCount") ? snapshot.GetValue<int>("commentCount") : 0;
+                transaction.Update(postRef, "commentCount", currentCount - 1);
+            });
 
             await commentRef.DeleteAsync();
+
             return new Result(true, $"댓글 삭제 성공: {commentId}");
         }
         catch (Exception e)
