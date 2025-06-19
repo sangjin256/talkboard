@@ -570,7 +570,7 @@ MonoBehaviour:
   m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
@@ -3156,7 +3156,7 @@ MonoBehaviour:
   m_ResetOnDeActivation: 1
   m_KeepTextSelectionVisible: 0
   m_RestoreOriginalTextOnEscape: 1
-  m_isRichTextEditingAllowed: 0
+  m_isRichTextEditingAllowed: 1
   m_LineLimit: 0
   isAlert: 0
   m_InputValidator: {fileID: 0}
@@ -5360,7 +5360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_AnchorMin.x
@@ -5368,11 +5368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1126
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5408,11 +5408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 603
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -210
       objectReference: {fileID: 0}
     - target: {fileID: 8081198947010289209, guid: 9052b8d926606e4488b47caa9f486723, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
