@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class UI_Board : MonoBehaviour
@@ -11,7 +12,44 @@ public class UI_Board : MonoBehaviour
     private void Awake()
     {
         _contentPreviewList = new List<UI_ContentPreview>();
-    } 
+    }
+
+    public async void OnClickRefreshButton()
+    { 
+        await UpdateContentPreviewList();
+    }
+
+    private async Task UpdateContentPreviewList()
+    {
+        List<PostDTO> postList = await PostManager.Instance.GetAllPostsAsync();
+
+        SetPreviewSize(postList.Count);
+        for (int i = 0; i < postList.Count; ++i)
+        {
+            _contentPreviewList[i].UpdatePreview(postList[i]);
+            _contentPreviewList[i].transform.SetSiblingIndex(i);
+            _contentPreviewList[i].gameObject.SetActive(true);
+        }
+    }
+
+    private void SetPreviewSize(int size)
+    {
+        if (_contentPreviewList.Count < size)
+        {
+            for (int i = _contentPreviewList.Count; i < size; ++i)
+            {
+                UI_ContentPreview newPreview = Instantiate(_contentPreviewPrefab, _contentPreviewParent).GetComponent<UI_ContentPreview>();
+                _contentPreviewList.Add(newPreview);
+            }
+        }
+        else if (_contentPreviewList.Count > size)
+        {
+            for (int i = _contentPreviewList.Count - 1; i >= size; --i)
+            {
+                _contentPreviewList[i].gameObject.SetActive(false);
+            }
+        }
+    }
     
     /*
 private void OnEnable()
