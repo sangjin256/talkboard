@@ -2,29 +2,76 @@
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Threading.Tasks;
 
 public class UI_CommentSlot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _nameTextUI;
     [SerializeField] private TextMeshProUGUI _timeTextUI;
-    [SerializeField] private TextMeshProUGUI _modifiedTextUI;
+    [SerializeField] private TextMeshProUGUI _isModifiedTextUI;
+    [SerializeField] private TMP_InputField _modifyTextInputField;
 
     [SerializeField] private TextMeshProUGUI _contentTextUI;
-    private CommentDTO _comment;
+    [SerializeField] private GameObject DetailScreen;
 
-    public void Init(CommentDTO comment)
+    private CommentDTO _comment;
+    public CommentDTO CommentDTO => _comment;
+
+    public void Refresh(CommentDTO comment)
     {
         _comment = comment;
+        _modifyTextInputField.gameObject.SetActive(false);
         _nameTextUI.text = _comment.AuthorNickname;
         _timeTextUI.text = FormatKoreanTimeAgo(_comment.CreatedAt);
-        _modifiedTextUI.text = _comment.IsModified == true ? "수정됨" : "";
+        _isModifiedTextUI.text = _comment.IsModified == true ? "수정됨" : "";
 
         _contentTextUI.text = _comment.Content;
     }
 
+    public async void OnClickDeleteButton()
+    {
+        string postId = "";
+        Debug.Log("포스트 아이디 가져오기 + 예외처리");
+        Result result = await CommentManager.Instance.TryDeleteComment(postId, _comment);
+
+        if (result.IsSuccess == false)
+        {
+            Debug.LogError(result.Message);
+        }
+
+        DetailScreen.SetActive(false);
+    }
+
+    public void OnClickUpdateStartButton()
+    {
+        _modifyTextInputField.text = _contentTextUI.text;
+        _contentTextUI.gameObject.SetActive(false);
+        _modifyTextInputField.gameObject.SetActive(true);
+        DetailScreen.SetActive(false);
+    }
+
+    public async Task OnClickUpdateButton()
+    {
+        string postId = "";
+        Debug.Log("포스트 아이디 가져오기");
+        _modifyTextInputField.gameObject.SetActive(false);
+        Result result = await CommentManager.Instance.TryUpdateComment(postId, _comment, _modifyTextInputField.text);
+
+        if (result.IsSuccess)
+        {
+            _contentTextUI.text = _modifyTextInputField.text;
+        }
+        else
+        {
+            Debug.LogError(result.Message);
+        }
+
+        _contentTextUI.gameObject.SetActive(true);
+    }
+
     private string FormatKoreanTimeAgo(DateTime dateTime)
     {
-        DateTime now = DateTime.UtcNow.AddHours(9); // 현재 한국 시간
+        DateTime now = DateTime.UtcNow;
         TimeSpan diff = now - dateTime;
 
         if (diff.TotalMinutes < 0)
