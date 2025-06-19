@@ -2,13 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class PostManager : BehaviourSingleton<PostManager>
 {
-    private Post _myPost;
-    
-    private PostRepository _postRepository;
+    private PostRepository _repository;
 
     private void Awake()
     {
@@ -18,44 +15,81 @@ public class PostManager : BehaviourSingleton<PostManager>
 
     private void Init()
     {
-        _postRepository = new PostRepository();
+        _repository = new PostRepository();
     }
 
-    public async Task<List<Post>> GetAllPostsAsync()
+    // 게시글 작성
+    public async Task<Result> TryCreatePost(string content)
     {
-        var dtos = await _postRepository.LoadAllPostsAsync();
-        var posts = new List<Post>();
-        foreach (var dto in dtos)
+        string email = AccountManager.Instance.CurrencAccount.Email;
+        string nickname = AccountManager.Instance.CurrencAccount.NickName;
+        Post post = new Post("",
+            email, 
+            nickname, 
+            content,
+            DateTime.UtcNow.AddHours(9)
+        );
+        
+        if (string.IsNullOrWhiteSpace(content) || content.Length < 1)
         {
-            posts.Add(dto.ToDomain());
-        }
-        return posts;
-    }
-
-    public async Task<Post> GetPostByIDAsync(string postId)
-    {
-        var dto = await _postRepository.LoadPostByIdAsync(postId);
-        return dto?.ToDomain();
-    }
-
-    public async Task<bool> TryCreatePostAsync(PostDTO dto)
-    {
-        if (string.IsNullOrWhiteSpace(dto.Content))
-        {
-            Debug.LogWarning("내용이 비어 있습니다.");
-            return false;
+            return new Result(false, "게시글은 최소 1자 이상이어야 합니다.");
         }
         
-        var post = dto.ToDomain();
-        return await _postRepository.SavePostAsync(post.ToDTO());
+        bool success = await _repository.SavePostAsync(post.ToDTO());
+        return new Result(success, success ? "게시글을 작성했습니다." : "게시글 작성 실패");
+    }
+
+    // 게시글 수정
+    public async Task<Result> TryEditPost(PostDTO oldPost, string content)
+    {
+        string email = AccountManager.Instance.CurrencAccount.Email;
+
+        Post post = oldPost.ToDomain();
+        if (!post.TryEditContent(email, content))
+        {
+            return new Result(false, "수정할 권한이 없거나 동일한 내용입니다.");
+        }
+
+        bool success = await _repository.EditPostAsync(post.ToDTO());
+        return new Result(success, success ? "게시글 수정 완료" : "게시글 수정 실패");
+    }
+
+    // 게시글 삭제
+    public async Task<Result> TryDeletePost(PostDTO post)
+    {
+        string email = AccountManager.Instance.CurrencAccount.Email;
+        Post domainPost = post.ToDomain();
+
+        if (!domainPost.CanBeDeletedBy(email))
+        {
+            return new Result(false, "삭제 권한이 없습니다.");
+        }
+
+        bool success = await _repository.DeletePostAsync(post.Id);
+        return new Result(success, success ? "게시글 삭제 완료" : "게시글 삭제 실패");
+    }
+
+    // 게시글 목록 가져오기
+    public async Task<List<PostDTO>> GetAllPostsAsync()
+    {
+        return await _repository.LoadAllPostsAsync();
+    }
+
+    // 게시글 업로드
+    public async Task<PostDTO> GetPostById(string postId)
+    {
+        return await _repository.LoadPostByIdAsync(postId);
     }
     
-    
-    
-    
-    
-    
-    // 게시글 작성 -> 자기 자신을 만들 수 없다. 매니저 책임
-    // 게시글 삭제 -> 저장소에 대한 작업. 레포 or 매니저 책임
-    
+    // 게시글 좋아요
+    public async Task<Result> ToggleLike(PostDTO dto)
+    {
+        string email = AccountManager.Instance.CurrencAccount.Email;
+
+        Post post = dto.ToDomain();
+        post.ToggleLike(email);
+
+        bool success = await _repository.EditPostAsync(post.ToDTO());
+        return new Result(success, post.IsLikedBy(email) ? "좋아요를 눌렀습니다." : "좋아요를 취소했습니다.");
+    }
 }
