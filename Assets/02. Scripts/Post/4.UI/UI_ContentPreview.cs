@@ -8,11 +8,20 @@ public class UI_ContentPreview : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _likeCountText;
     [SerializeField] private TextMeshProUGUI _commmentCountText;
 
+    private PostDTO _post;
+
     public void UpdatePreview(PostDTO post)
     {
+        _post = post;
+        
         _nicknameText.text = post.AuthorNickname;
         _contentText.text = post.Content;
         _likeCountText.text = post.LikeCount.ToString();
         _commmentCountText.text = post.CommentCount.ToString();
+    }
+    
+    public void OnClickContentPreview()
+    {
+        Debug.Log("Clicked on content preview: " + _post.Id);
     }
 }
