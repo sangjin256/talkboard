@@ -10,14 +10,20 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     public UI_Board Board => _board;
     
     [SerializeField] private UI_Post _postPanel;
+    public UI_Post PostPanel => _postPanel;
+    
     [SerializeField] private UI_Comment _commentPanel;
     [SerializeField] private UI_WritePost WritePostPostPanel;
+    [SerializeField] private UI_EditPost EditPostPostPanel;
     [SerializeField] private TextMeshProUGUI _notificationdTextUI;
     [SerializeField] private ScrollRect _commentScrollRect;
+    
+    public GameObject PostDetailScreen;
+    
     private Canvas _canvas;
 
     private CanvasGroup NotificationCanvasGroup;
-    
+
     private PostDTO _post;
     public PostDTO Post => _post;
 
@@ -44,6 +50,11 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     public void OnClickWritePostButton()
     {
         WritePostPostPanel.gameObject.SetActive(true);
+    }
+    
+    public void OnClickEditPostButton()
+    {
+        EditPostPostPanel.gameObject.SetActive(true);
     }
 
     public void RefreshComments()
