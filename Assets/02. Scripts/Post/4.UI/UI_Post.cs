@@ -45,6 +45,13 @@ public class UI_Post : MonoBehaviour
         }
     }
 
+    public async void OnClickLikeButton()
+    { 
+        Debug.Log("OnClickLikeButton");
+        await PostManager.Instance.ToggleLike(_post);
+        UI_Manager.Instance.RefreshPost();
+    }
+
     public void OnClickBackButton()
     {
         UI_Manager.Instance.Board.UpdatePostPreviewList();
