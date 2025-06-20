@@ -3618,14 +3618,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -100.005
       objectReference: {fileID: 0}
-    - target: {fileID: 6447586205933660141, guid: 90d428ed547a418409e934f04e8dea47, type: 3}
-      propertyPath: m_Maskable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447586205933660141, guid: 90d428ed547a418409e934f04e8dea47, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6604569716582722957, guid: 90d428ed547a418409e934f04e8dea47, type: 3}
       propertyPath: m_Name
       value: Notification
@@ -3633,10 +3625,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6604569716582722957, guid: 90d428ed547a418409e934f04e8dea47, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1320491682}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90d428ed547a418409e934f04e8dea47, type: 3}
 --- !u!114 &1320491679 stripped
 MonoBehaviour:
@@ -3654,23 +3643,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1545322362569445291, guid: 90d428ed547a418409e934f04e8dea47, type: 3}
   m_PrefabInstance: {fileID: 1320491678}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1320491681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6604569716582722957, guid: 90d428ed547a418409e934f04e8dea47, type: 3}
-  m_PrefabInstance: {fileID: 1320491678}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &1320491682
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320491681}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1 &1343606291
 GameObject:
   m_ObjectHideFlags: 0
