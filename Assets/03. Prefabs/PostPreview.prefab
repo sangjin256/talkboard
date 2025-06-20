@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 2283513921801633993}
   - component: {fileID: 4180514162792585567}
   m_Layer: 5
-  m_Name: ContentPreview
+  m_Name: PostPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

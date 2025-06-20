@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class UI_ContentPreview : MonoBehaviour
+public class UI_PostPreview : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _nicknameText;
     [SerializeField] private TextMeshProUGUI _contentText;
