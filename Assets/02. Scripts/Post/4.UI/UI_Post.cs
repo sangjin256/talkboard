@@ -52,9 +52,9 @@ public class UI_Post : MonoBehaviour
         UI_Manager.Instance.RefreshPost();
     }
 
-    public void OnClickBackButton()
+    public async void OnClickBackButton()
     {
-        UI_Manager.Instance.Board.UpdatePostPreviewList();
+        await UI_Manager.Instance.Board.UpdatePostPreviewList();
         gameObject.SetActive(false);
     }
 
