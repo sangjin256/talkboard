@@ -41,6 +41,16 @@ public class CommentManager : BehaviourSingleton<CommentManager>
         }
     }
 
+    public Result CheckIsMyComment(CommentDTO oldComment)
+    {
+        string email = AccountManager.Instance.CurrencAccount.Email;
+        if(oldComment.AuthorEmail == email)
+        {
+            return new Result(true, "본인의 댓글입니다.");
+        }
+        return new Result(false, "본인의 댓글이 아닙니다.");
+    }
+
     public async Task<Result> TryUpdateComment(string postId, CommentDTO oldComment, string content)
     {
         string email = AccountManager.Instance.CurrencAccount.Email;

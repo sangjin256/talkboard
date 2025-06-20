@@ -53,10 +53,19 @@ public class UI_CommentSlot : MonoBehaviour
 
     public void UpdateCommentStart()
     {
-        _modifyTextInputField.text = _contentTextUI.text;
-        _contentTextUI.gameObject.SetActive(false);
-        _modifyTextInputField.gameObject.SetActive(true);
-        _updateButtonLayout.SetActive(true);
+        Result result = CommentManager.Instance.CheckIsMyComment(_comment);
+
+        if (result.IsSuccess)
+        {
+            _modifyTextInputField.text = _contentTextUI.text;
+            _contentTextUI.gameObject.SetActive(false);
+            _modifyTextInputField.gameObject.SetActive(true);
+            _updateButtonLayout.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError(result.Message);
+        }
     }
 
     public async void OnClickUpdateComment()
