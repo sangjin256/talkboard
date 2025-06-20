@@ -3384,8 +3384,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI_WritePost, Assembly-CSharp
+      - m_Target: {fileID: 1052753670}
+        m_TargetAssemblyTypeName: UI_EditPost, Assembly-CSharp
         m_MethodName: OnClickCancelButton
         m_Mode: 1
         m_Arguments:
