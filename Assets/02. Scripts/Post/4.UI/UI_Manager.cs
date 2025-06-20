@@ -1,10 +1,13 @@
+﻿using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class UI_Manager : BehaviourSingleton<UI_Manager>
 {
     [SerializeField] private UI_Board _board;
     [SerializeField] private UI_Post _postPanel;
     [SerializeField] private UI_Comment _commentPanel;
+    [SerializeField] private TextMeshProUGUI _notificationdTextUI;
     
     private PostDTO _post;
     public PostDTO Post => _post;
@@ -15,7 +18,6 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
         
         _postPanel.UpdateContent(post);
         _commentPanel.Refresh();
-        Debug.Log("CommentPanel 초기화 됐나요?");
         _postPanel.gameObject.SetActive(true);
     }
  
@@ -29,8 +31,8 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
         _commentPanel.Refresh();
     }
 
-    public void OnClickWriteButton()
+    public void SetNotification(string content)
     {
-        
+        _notificationdTextUI.text = content;
     }
 }
