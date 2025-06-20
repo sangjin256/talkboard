@@ -1,10 +1,13 @@
+﻿using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class UI_Manager : BehaviourSingleton<UI_Manager>
 {
     [SerializeField] private UI_Board _board;
     [SerializeField] private UI_Post _postPanel;
     [SerializeField] private UI_Comment _commentPanel;
+    [SerializeField] private TextMeshProUGUI _notificationdTextUI;
     
     private PostDTO _post;
     public PostDTO Post => _post;
@@ -26,5 +29,10 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     public void RefreshComments()
     {
         _commentPanel.Refresh();
+    }
+
+    public void SetNotification(string content)
+    {
+        _notificationdTextUI.text = content;
     }
 }
