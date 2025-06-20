@@ -23,22 +23,18 @@ public class CommentManager : BehaviourSingleton<CommentManager>
     {
         string email = AccountManager.Instance.CurrencAccount.Email;
         string nickname = AccountManager.Instance.CurrencAccount.NickName;
-        Comment comment = new Comment("",
-                                      email, 
-                                      nickname, 
-                                      content, 
-                                      false,
-                                      DateTime.UtcNow
-                                      );
 
-        if(await _repository.TryAddComment(postId, new CommentDTO(comment)))
-        {
-            return new Result(true, "댓글을 달았습니다.");
-        }
-        else
-        {
-            return new Result(false, "댓글을 추가할 수 없습니다.");
-        }
+        if (string.IsNullOrWhiteSpace(content)) return new Result(false, "댓글은 빈칸일 수 없습니다!");
+
+        CommentDTO comment = new CommentDTO("",
+                                          email, 
+                                          nickname, 
+                                          content, 
+                                          false,
+                                          DateTime.UtcNow
+                                          );
+
+        return await _repository.TryAddComment(postId, comment);
     }
 
     public Result CheckIsMyComment(CommentDTO oldComment)

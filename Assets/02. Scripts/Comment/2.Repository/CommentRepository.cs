@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CommentRepository
 {
-    public async Task<bool> TryAddComment(string postId, CommentDTO comment)
+    public async Task<Result> TryAddComment(string postId, CommentDTO comment)
     {
         try
         {
@@ -39,28 +39,11 @@ public class CommentRepository
         }
         catch(Exception e)
         {
-            Debug.LogError("댓글 추가 실패");
-            return false;
+            return new Result(false, "댓글 추가 실패");
         }
 
-        return true;
+        return new Result(true, "댓글 추가 성공");
     }
-
-    //public async void OnClickAddCommentButton()
-    //{
-    //    CommentDTO newComment = new CommentDTO("iD", "user1@a.a", "댓글러123", "저도 그렇게 생각해요!", false, DateTime.UtcNow.AddHours(9));
-
-    //    try
-    //    {
-    //        List<Post> posts = await GetPostsByEmail("sangjin256@naver.com");
-    //        await AddComment(posts[0].Id, newComment);
-    //        Debug.Log("댓글 등록 성공!");
-    //    }
-    //    catch (Exception e)
-    //    {
-    //        Debug.LogError("댓글 등록 실패: " + e.Message);
-    //    }
-    //}
 
     public async Task<List<CommentDTO>> GetAllComments(string postId)
     {
@@ -195,13 +178,13 @@ public class CommentRepository
 
             if (!snapshot.Exists)
             {
-                return new Result(false, $"수정 실패: 댓글({comment.Id}) 존재하지 않음");
+                return new Result(false, $"댓글({comment.Id}) 존재하지 않음");
             }
 
             string authorEmail = snapshot.GetValue<string>("authorEmail");
             if (authorEmail != email)
             {
-                return new Result(false, "수정 권한 없음: 본인의 댓글만 수정할 수 있습니다.");
+                return new Result(false, "본인의 댓글만 수정할 수 있습니다.");
             }
             Dictionary<string, object> newCommentData = new Dictionary<string, object>
              {
@@ -230,13 +213,13 @@ public class CommentRepository
 
             if (!snapshot.Exists)
             {
-                return new Result(false, $"삭제 실패: 댓글({commentId}) 존재하지 않음");
+                return new Result(false, $"댓글({commentId}) 존재하지 않음");
             }
 
             string authorEmail = snapshot.GetValue<string>("authorEmail");
             if (authorEmail != email)
             {
-                return new Result(false, "삭제 권한 없음: 본인의 댓글만 삭제할 수 있습니다.");
+                return new Result(false, "본인의 댓글만 삭제할 수 있습니다.");
             }
             await FirebaseManager.Instance.DB.RunTransactionAsync(async transaction =>
             {

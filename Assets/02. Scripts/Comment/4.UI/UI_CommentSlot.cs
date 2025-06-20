@@ -46,7 +46,7 @@ public class UI_CommentSlot : MonoBehaviour
 
         if (result.IsSuccess == false)
         {
-            Debug.LogError(result.Message);
+            UI_Manager.Instance.SetNotification(result.Message);
             return;
         }
         UI_Manager.Instance.RefreshComments();
@@ -65,7 +65,7 @@ public class UI_CommentSlot : MonoBehaviour
         }
         else
         {
-            Debug.LogError(result.Message);
+            UI_Manager.Instance.SetNotification(result.Message);
         }
     }
 
@@ -82,7 +82,7 @@ public class UI_CommentSlot : MonoBehaviour
         }
         else
         {
-            Debug.LogError(result.Message);
+            UI_Manager.Instance.SetNotification(result.Message);
         }
 
         UI_Manager.Instance.RefreshComments();
