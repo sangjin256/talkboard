@@ -47,11 +47,18 @@ public class UI_Comment : MonoBehaviour
 
     public async void OnClickAddCommentButton()
     {
-        if (string.IsNullOrWhiteSpace(_commentInputField.text)) return;
-        
         string postId = UI_Manager.Instance.Post.Id;
         Result result = await CommentManager.Instance.TryAddComment(postId, _commentInputField.text);
-        _commentInputField.text = string.Empty;
-        Refresh();
+
+        if(result.IsSuccess == false)
+        {
+            UI_Manager.Instance.SetNotification(result.Message);
+        }
+        else
+        {
+            _commentInputField.text = string.Empty;
+            Refresh();
+        }
+
     }
 }

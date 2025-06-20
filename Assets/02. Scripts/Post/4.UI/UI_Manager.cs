@@ -8,9 +8,15 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     [SerializeField] private UI_Post _postPanel;
     [SerializeField] private UI_Comment _commentPanel;
     [SerializeField] private TextMeshProUGUI _notificationdTextUI;
+    private CanvasGroup NotificationCanvasGroup;
     
     private PostDTO _post;
     public PostDTO Post => _post;
+
+    private void Start()
+    {
+        NotificationCanvasGroup = _notificationdTextUI.transform.parent.GetComponent<CanvasGroup>();
+    }
 
     public void OnClickContentPreview(PostDTO post)
     {
@@ -34,5 +40,8 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     public void SetNotification(string content)
     {
         _notificationdTextUI.text = content;
+        NotificationCanvasGroup.alpha = 1f;
+
+        NotificationCanvasGroup.DOFade(0f, 0.5f).SetDelay(2f);
     }
 }
