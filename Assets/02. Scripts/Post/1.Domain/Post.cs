@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Firebase.Firestore;
 
@@ -65,7 +65,7 @@ public class Post
     // 게시글 수정: 본문 내용을 바꾸고 IsModified를 true로 바꾼다.
     public bool TryEditContent(string userEmail, string newContent)
     {
-        if (CanEdit(AuthorEmail))
+        if (CanEdit(userEmail))
         {
             if (Content != newContent)
             {
