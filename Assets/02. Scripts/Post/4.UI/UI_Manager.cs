@@ -56,10 +56,16 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     {
         EditPostPostPanel.gameObject.SetActive(true);
     }
-
-    public void RefreshComments()
+    
+    public async void RefreshPost()
     {
-        _commentPanel.Refresh();
+        await _postPanel.RefreshPost();
+        await _commentPanel.Refresh();
+    }
+
+    public async void RefreshComments()
+    {
+        await _commentPanel.Refresh();
     }
 
     public void SetNotification(string content)
