@@ -112,7 +112,7 @@ public class Post
 
     public PostDTO ToDTO()
     {
-        return new  PostDTO(Id, AuthorEmail, AuthorNickname, Content, CommentCount, CreatedAt, IsModified);
+        return new  PostDTO(Id, AuthorEmail, AuthorNickname, Content, CommentCount, LikeCount, LikeUserEmails, CreatedAt, IsModified);
     }
 }
 

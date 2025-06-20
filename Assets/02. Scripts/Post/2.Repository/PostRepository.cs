@@ -32,6 +32,8 @@ public class PostRepository
                         doc.GetValue<string>("authorNickname"),
                         doc.GetValue<string>("content"),
                         doc.GetValue<int>("commentCount"),
+                        doc.GetValue<int>("likeCount"),
+                        doc.GetValue<HashSet<string>>("likeUserEmails"),
                         doc.GetValue<Timestamp>("createdAt").ToDateTime(),
                         doc.GetValue<bool>("isModified")
                     );
@@ -66,6 +68,8 @@ public class PostRepository
                     doc.GetValue<string>("authorNickname"),
                     doc.GetValue<string>("content"),
                     doc.GetValue<int>("commentCount"),
+                    doc.GetValue<int>("likeCount"),
+                    doc.GetValue<HashSet<string>>("likeUserEmails"),
                     doc.GetValue<Timestamp>("createdAt").ToDateTime(),
                     doc.GetValue<bool>("isModified")
                 );
@@ -96,6 +100,8 @@ public class PostRepository
                 { "authorNickname", post.AuthorNickname },
                 { "content", post.Content },
                 { "commentCount", post.CommentCount },
+                { "likeCount", post.LikeCount },
+                { "likeUserEmails", post.LikeUserEmails },
                 { "isModified", false },
                 { "createdAt", Timestamp.FromDateTime(post.CreatedAt.ToUniversalTime()) }
             };
@@ -124,6 +130,8 @@ public class PostRepository
                 { "authorNickname", post.AuthorNickname },
                 { "content", post.Content },
                 { "commentCount", post.CommentCount },
+                { "likeCount", post.LikeCount },
+                { "likeUserEmails", post.LikeUserEmails },
                 { "isModified", false },
                 { "createdAt", Timestamp.FromDateTime(post.CreatedAt.ToUniversalTime()) }
             };
