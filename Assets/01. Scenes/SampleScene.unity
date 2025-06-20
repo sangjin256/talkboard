@@ -710,10 +710,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389209084}
+  - component: {fileID: 389209087}
   - component: {fileID: 389209086}
   - component: {fileID: 389209085}
   m_Layer: 5
-  m_Name: WritePanel
+  m_Name: WritePostPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -780,6 +781,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389209083}
   m_CullTransparentMesh: 1
+--- !u!114 &389209087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389209083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701e580711c497743830ca92b96c5f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,7 +1971,7 @@ GameObject:
   - component: {fileID: 716883116}
   - component: {fileID: 716883115}
   m_Layer: 5
-  m_Name: WriteButton
+  m_Name: WritePostButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2026,7 +2039,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 716883116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1718192914}
+        m_TargetAssemblyTypeName: UI_Manager, Assembly-CSharp
+        m_MethodName: OnClickWritePostButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &716883116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4857,6 +4882,7 @@ MonoBehaviour:
   _board: {fileID: 343136903}
   _postPanel: {fileID: 1944539330}
   _commentPanel: {fileID: 2028118620}
+  WritePostPostPanel: {fileID: 389209087}
   _notificationdTextUI: {fileID: 1320491679}
 --- !u!1 &1775487367
 GameObject:

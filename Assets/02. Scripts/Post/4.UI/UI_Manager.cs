@@ -7,6 +7,7 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     [SerializeField] private UI_Board _board;
     [SerializeField] private UI_Post _postPanel;
     [SerializeField] private UI_Comment _commentPanel;
+    [SerializeField] private UI_WritePost WritePostPostPanel;
     [SerializeField] private TextMeshProUGUI _notificationdTextUI;
     private CanvasGroup NotificationCanvasGroup;
     
@@ -30,6 +31,11 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     public async void OnClickRefreshButton()
     {
         await _board.UpdateContentPreviewList();
+    }
+
+    public void OnClickWritePostButton()
+    {
+        WritePostPostPanel.gameObject.SetActive(true);
     }
 
     public void RefreshComments()
