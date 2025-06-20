@@ -27,8 +27,9 @@ public class UI_Comment : MonoBehaviour
         List<CommentDTO> commentList = await CommentManager.Instance.GetAllCommentsOrderbyTime(postId);
 
         if(_commentSlotList.Count < commentList.Count)
-        { 
-            for(int i = 0; i < commentList.Count - _commentSlotList.Count; i++)
+        {
+            int listCount = _commentSlotList.Count;
+            for(int i = 0; i < commentList.Count - listCount; i++)
             {
                 UI_CommentSlot slot = Instantiate(_commentSlotPrefab, _slotParent.transform).GetComponent<UI_CommentSlot>();
                 slot.Init(_commentDetailScreen);
