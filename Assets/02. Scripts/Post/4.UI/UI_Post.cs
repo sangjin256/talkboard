@@ -39,11 +39,6 @@ public class UI_Post : MonoBehaviour
         _commentCountText.text = $"댓글({_post.CommentCount.ToString()})";
     }
 
-    public void OnClickRegisterCommentButton()
-    {
-        CommentManager.Instance.TryAddComment(_post.Id, _contentText.text);
-    }
-
     public void OnClickBackButton()
     {
         gameObject.SetActive(false);

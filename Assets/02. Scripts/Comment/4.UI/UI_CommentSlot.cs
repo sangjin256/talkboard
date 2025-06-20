@@ -29,7 +29,7 @@ public class UI_CommentSlot : MonoBehaviour
         _modifyTextInputField.gameObject.SetActive(false);
         _nameTextUI.text = _comment.AuthorNickname;
         _timeTextUI.text = FormatKoreanTimeAgo(_comment.CreatedAt);
-        _isModifiedTextUI.text = _comment.IsModified == true ? "수정됨" : "";
+        _isModifiedTextUI.text = _comment.IsModified == true ? "(수정됨)" : "";
 
         _contentTextUI.text = _comment.Content;
     }
@@ -41,14 +41,15 @@ public class UI_CommentSlot : MonoBehaviour
 
     public async Task DeleteComment()
     {
-        string postId = "854At4JAotmWYHAbS9wQ";
-        Debug.Log("포스트 아이디 가져오기 + 예외처리");
+        string postId = UI_Manager.Instance.Post.Id;
         Result result = await CommentManager.Instance.TryDeleteComment(postId, _comment);
 
         if (result.IsSuccess == false)
         {
             Debug.LogError(result.Message);
+            return;
         }
+        UI_Manager.Instance.RefreshComments();
     }
 
     public void UpdateCommentStart()
@@ -70,8 +71,7 @@ public class UI_CommentSlot : MonoBehaviour
 
     public async void OnClickUpdateComment()
     {
-        string postId = "854At4JAotmWYHAbS9wQ";
-        Debug.Log("포스트 아이디 가져오기");
+        string postId = UI_Manager.Instance.Post.Id;
         _modifyTextInputField.gameObject.SetActive(false);
         _updateButtonLayout.SetActive(false);
         Result result = await CommentManager.Instance.TryUpdateComment(postId, _comment, _modifyTextInputField.text);
@@ -85,6 +85,7 @@ public class UI_CommentSlot : MonoBehaviour
             Debug.LogError(result.Message);
         }
 
+        UI_Manager.Instance.RefreshComments();
         _contentTextUI.gameObject.SetActive(true);
     }
 

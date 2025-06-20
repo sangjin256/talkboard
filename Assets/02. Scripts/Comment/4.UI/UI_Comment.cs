@@ -1,12 +1,14 @@
 ﻿using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class UI_Comment : MonoBehaviour
 {
     [SerializeField] private GameObject _commentSlotPrefab;
     [SerializeField] private GameObject _slotParent;
     [SerializeField] private UI_CommentDetailScreen _commentDetailScreen;
+    [SerializeField] private TMP_InputField _commentInputField;
     private List<UI_CommentSlot> _commentSlotList;
 
     public void Start()
@@ -22,10 +24,11 @@ public class UI_Comment : MonoBehaviour
 
     public async void Refresh()
     {
-        Debug.Log("채워넣어야댐");       
-        string postId = "854At4JAotmWYHAbS9wQ";
+        string postId = UI_Manager.Instance.Post.Id;
         List<CommentDTO> commentList = await CommentManager.Instance.GetAllCommentsOrderbyTime(postId);
 
+        if (commentList == null) return;
+        
         if(_commentSlotList.Count < commentList.Count)
         {
             int listCount = _commentSlotList.Count;
@@ -45,5 +48,15 @@ public class UI_Comment : MonoBehaviour
             }
             else _commentSlotList[i].gameObject.SetActive(false);
         }
+    }
+
+    public async void OnClickAddCommentButton()
+    {
+        if (string.IsNullOrWhiteSpace(_commentInputField.text)) return;
+        
+        string postId = UI_Manager.Instance.Post.Id;
+        Result result = await CommentManager.Instance.TryAddComment(postId, _commentInputField.text);
+        _commentInputField.text = string.Empty;
+        Refresh();
     }
 }

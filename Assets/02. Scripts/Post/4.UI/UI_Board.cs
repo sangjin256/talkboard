@@ -14,12 +14,7 @@ public class UI_Board : MonoBehaviour
         _postPreviewList = new List<UI_PostPreview>();
     }
 
-    public async void OnClickRefreshButton()
-    { 
-        await UpdateContentPreviewList();
-    }
-
-    private async Task UpdateContentPreviewList()
+    public async Task UpdateContentPreviewList()
     {
         List<PostDTO> postList = await PostManager.Instance.GetAllPostsAsync();
 
