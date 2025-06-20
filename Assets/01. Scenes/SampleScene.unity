@@ -2537,7 +2537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 76, y: -63.19995}
+  m_AnchoredPosition: {x: 76, y: -63.200195}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1099350997
@@ -2583,7 +2583,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1099350998}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1944539330}
+        m_TargetAssemblyTypeName: UI_Content, Assembly-CSharp
+        m_MethodName: OnClickBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1099350998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4380,6 +4392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1718192913}
+  - component: {fileID: 1718192914}
   - component: {fileID: 1718192912}
   - component: {fileID: 1718192911}
   - component: {fileID: 1718192910}
@@ -4475,6 +4488,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1718192914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718192909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdad3f23826193e4d97268207149548b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _board: {fileID: 343136903}
+  PostPanel: {fileID: 1944539330}
 --- !u!1 &1775487367
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,7 +4657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 76, y: -63.19995}
+  m_AnchoredPosition: {x: 76, y: -63.200195}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1829359571
@@ -4896,10 +4923,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1944539327}
+  - component: {fileID: 1944539330}
   - component: {fileID: 1944539329}
   - component: {fileID: 1944539328}
   m_Layer: 5
-  m_Name: ContentPanel
+  m_Name: PostPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4968,6 +4996,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944539326}
   m_CullTransparentMesh: 1
+--- !u!114 &1944539330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944539326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47de43fd57f26f846b333f913aa24693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backButton: {fileID: 1099350997}
+  _nicknameText: {fileID: 1515216509}
+  _timeStampText: {fileID: 1234268327}
+  _modifiedText: {fileID: 458343111}
+  _contentText: {fileID: 1993104936}
+  _likeCountText: {fileID: 2145949798}
+  _commentCountText: {fileID: 106503092}
 --- !u!1 &1993104934
 GameObject:
   m_ObjectHideFlags: 0
@@ -5212,7 +5259,7 @@ GameObject:
   - component: {fileID: 2145949799}
   - component: {fileID: 2145949798}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LikeCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
