@@ -3668,8 +3668,8 @@ CanvasGroup:
   m_GameObject: {fileID: 1320491681}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1343606291
 GameObject:
@@ -4884,6 +4884,7 @@ MonoBehaviour:
   _commentPanel: {fileID: 2028118620}
   WritePostPostPanel: {fileID: 389209087}
   _notificationdTextUI: {fileID: 1320491679}
+  _commentScrollRect: {fileID: 1648242059}
 --- !u!1 &1775487367
 GameObject:
   m_ObjectHideFlags: 0

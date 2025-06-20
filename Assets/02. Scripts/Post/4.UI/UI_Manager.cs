@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class UI_Manager : BehaviourSingleton<UI_Manager>
 {
@@ -9,6 +10,8 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     [SerializeField] private UI_Comment _commentPanel;
     [SerializeField] private UI_WritePost WritePostPostPanel;
     [SerializeField] private TextMeshProUGUI _notificationdTextUI;
+    [SerializeField] private ScrollRect _commentScrollRect;
+
     private CanvasGroup NotificationCanvasGroup;
     
     private PostDTO _post;
@@ -49,5 +52,11 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
         NotificationCanvasGroup.alpha = 1f;
 
         NotificationCanvasGroup.DOFade(0f, 0.5f).SetDelay(2f);
+    }
+
+    public void SetCommentScrollVerticalPoint(bool isDown)
+    {
+        if (isDown) _commentScrollRect.verticalNormalizedPosition = 0f;
+        else _commentScrollRect.verticalNormalizedPosition = 1f;
     }
 }
