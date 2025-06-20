@@ -32,6 +32,7 @@ public class UI_EditPost : MonoBehaviour
             UI_Manager.Instance.SetNotification("게시글이 수정되었습니다.");
             _inputField.text = string.Empty;
             gameObject.SetActive(false);
+            UI_Manager.Instance.RefreshPost();
             await UI_Manager.Instance.Board.UpdatePostPreviewList();
         }
         else
