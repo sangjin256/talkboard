@@ -36,6 +36,7 @@ public class UI_Post : MonoBehaviour
 
     public void OnClickBackButton()
     {
+        UI_Manager.Instance.Board.UpdatePostPreviewList();
         gameObject.SetActive(false);
     }
 }

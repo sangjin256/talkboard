@@ -35,7 +35,7 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
  
     public async void OnClickRefreshButton()
     {
-        await _board.UpdateContentPreviewList();
+        await _board.UpdatePostPreviewList();
     }
 
     public void OnClickWritePostButton()
