@@ -5,6 +5,8 @@ using DG.Tweening;
 public class UI_Manager : BehaviourSingleton<UI_Manager>
 {
     [SerializeField] private UI_Board _board;
+    public UI_Board Board => _board;
+    
     [SerializeField] private UI_Post _postPanel;
     [SerializeField] private UI_Comment _commentPanel;
     [SerializeField] private UI_WritePost WritePostPostPanel;
