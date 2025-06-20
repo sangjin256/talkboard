@@ -60,6 +60,13 @@ public class UI_Comment : MonoBehaviour
             _commentInputField.text = string.Empty;
             await Refresh();
             UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
         }
 
     }
