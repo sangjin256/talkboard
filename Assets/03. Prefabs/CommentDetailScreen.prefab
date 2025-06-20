@@ -467,7 +467,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575380212491592007}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8284857198615793812}
+        m_TargetAssemblyTypeName: UI_CommentDetailScreen, Assembly-CSharp
+        m_MethodName: OnClickDeleteButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6362779709805030432
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +600,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3042477120851312598}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8284857198615793812}
+        m_TargetAssemblyTypeName: UI_CommentDetailScreen, Assembly-CSharp
+        m_MethodName: OnClickUpdateStartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7483262773931071152
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +839,7 @@ GameObject:
   - component: {fileID: 8284857198615793812}
   m_Layer: 5
   m_Name: CommentDetailScreen
-  m_TagString: Untagged
+  m_TagString: CommentDetailScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -920,7 +944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2ccfff42c6153499b69c1f93264d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetailScreen: {fileID: 0}
 --- !u!1 &9096226099620565477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,4 +1064,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8410515417588672221}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8284857198615793812}
+        m_TargetAssemblyTypeName: UI_CommentDetailScreen, Assembly-CSharp
+        m_MethodName: OnClickCancelButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

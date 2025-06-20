@@ -6,6 +6,7 @@ public class UI_Comment : MonoBehaviour
 {
     [SerializeField] private GameObject _commentSlotPrefab;
     [SerializeField] private GameObject _slotParent;
+    [SerializeField] private UI_CommentDetailScreen _commentDetailScreen;
     private List<UI_CommentSlot> _commentSlotList;
 
     public void Start()
@@ -13,6 +14,7 @@ public class UI_Comment : MonoBehaviour
         _commentSlotList = new List<UI_CommentSlot>();
     }
 
+    [ContextMenu("REFRESH")]
     public void OnClickRefresh()
     {
         Refresh();
@@ -21,7 +23,7 @@ public class UI_Comment : MonoBehaviour
     public async void Refresh()
     {
         Debug.Log("채워넣어야댐");       
-        string postId = "";
+        string postId = "854At4JAotmWYHAbS9wQ";
         List<CommentDTO> commentList = await CommentManager.Instance.GetAllCommentsOrderbyTime(postId);
 
         if(_commentSlotList.Count < commentList.Count)
@@ -29,6 +31,7 @@ public class UI_Comment : MonoBehaviour
             for(int i = 0; i < commentList.Count - _commentSlotList.Count; i++)
             {
                 UI_CommentSlot slot = Instantiate(_commentSlotPrefab, _slotParent.transform).GetComponent<UI_CommentSlot>();
+                slot.Init(_commentDetailScreen);
                 _commentSlotList.Add(slot);
             }
         }
