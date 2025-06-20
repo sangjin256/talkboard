@@ -6561,6 +6561,7 @@ MonoBehaviour:
   _slotParent: {fileID: 2028118616}
   _commentDetailScreen: {fileID: 924181195}
   _commentInputField: {fileID: 462449562}
+  _commentCountTextUI: {fileID: 106503092}
 --- !u!1 &2042212593
 GameObject:
   m_ObjectHideFlags: 0
