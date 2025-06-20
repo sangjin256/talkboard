@@ -11,6 +11,8 @@ public class UI_Comment : MonoBehaviour
     [SerializeField] private GameObject _slotParent;
     [SerializeField] private UI_CommentDetailScreen _commentDetailScreen;
     [SerializeField] private TMP_InputField _commentInputField;
+    [SerializeField] private TextMeshProUGUI _commentCountTextUI;
+
     private List<UI_CommentSlot> _commentSlotList = new List<UI_CommentSlot>();
 
     [ContextMenu("REFRESH")]
@@ -45,6 +47,8 @@ public class UI_Comment : MonoBehaviour
             }
             else _commentSlotList[i].gameObject.SetActive(false);
         }
+
+        _commentCountTextUI.text = $"댓글({commentList.Count})";
 
         await Task.Yield();
     }

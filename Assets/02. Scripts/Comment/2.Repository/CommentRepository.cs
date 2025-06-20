@@ -27,11 +27,9 @@ public class CommentRepository
              { "createdAt", Timestamp.FromDateTime(comment.CreatedAt.ToUniversalTime()) }
          };
 
-            // Firestore에 저장
-            await newCommentRef.SetAsync(commentData);
-
             await FirebaseManager.Instance.DB.RunTransactionAsync(async transaction =>
             {
+                await newCommentRef.SetAsync(commentData);
                 DocumentSnapshot snapshot = await transaction.GetSnapshotAsync(postRef);
                 int currentCount = snapshot.ContainsField("commentCount") ? snapshot.GetValue<int>("commentCount") : 0;
                 transaction.Update(postRef, "commentCount", currentCount + 1);
@@ -226,9 +224,9 @@ public class CommentRepository
                 DocumentSnapshot snapshot = await transaction.GetSnapshotAsync(postRef);
                 int currentCount = snapshot.ContainsField("commentCount") ? snapshot.GetValue<int>("commentCount") : 0;
                 transaction.Update(postRef, "commentCount", currentCount - 1);
+                transaction.Delete(commentRef);
             });
 
-            await commentRef.DeleteAsync();
 
             return new Result(true, $"댓글 삭제 성공: {commentId}");
         }
