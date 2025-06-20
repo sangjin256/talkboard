@@ -18,7 +18,7 @@ public class UI_Comment : MonoBehaviour
         Refresh();
     }
 
-    public async Task Refresh()
+    public async void Refresh()
     {
         string postId = UI_Manager.Instance.Post.Id;
         List<CommentDTO> commentList = await CommentManager.Instance.GetAllCommentsOrderbyTime(postId);
@@ -58,16 +58,8 @@ public class UI_Comment : MonoBehaviour
         else
         {
             _commentInputField.text = string.Empty;
-            await Refresh();
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
-            UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
+            Refresh();
+            await UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
         }
-
     }
 }

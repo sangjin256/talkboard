@@ -2,6 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class UI_Manager : BehaviourSingleton<UI_Manager>
 {
@@ -13,6 +14,7 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     [SerializeField] private UI_WritePost WritePostPostPanel;
     [SerializeField] private TextMeshProUGUI _notificationdTextUI;
     [SerializeField] private ScrollRect _commentScrollRect;
+    private Canvas _canvas;
 
     private CanvasGroup NotificationCanvasGroup;
     
@@ -22,6 +24,7 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     private void Start()
     {
         NotificationCanvasGroup = _notificationdTextUI.transform.parent.GetComponent<CanvasGroup>();
+        _canvas = GetComponent<Canvas>();
     }
 
     public void OnClickContentPreview(PostDTO post)
@@ -56,9 +59,16 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
         NotificationCanvasGroup.DOFade(0f, 0.5f).SetDelay(2f);
     }
 
-    public void SetCommentScrollVerticalPoint(bool isDown)
+    public async Task SetCommentScrollVerticalPoint(bool isDown)
     {
+        await Task.Yield();
+
         if (isDown) _commentScrollRect.verticalNormalizedPosition = 0f;
         else _commentScrollRect.verticalNormalizedPosition = 1f;
+    }
+
+    public void ForceUpdateCanvas()
+    {
+        Canvas.ForceUpdateCanvases();
     }
 }
