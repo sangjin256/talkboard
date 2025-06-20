@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using System.Threading.Tasks;
 
 public class UI_Comment : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class UI_Comment : MonoBehaviour
         {
             _commentInputField.text = string.Empty;
             Refresh();
+            await UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
         }
-
     }
 }
