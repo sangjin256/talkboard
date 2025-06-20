@@ -1,5 +1,6 @@
-using Firebase.Firestore;
+﻿using Firebase.Firestore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -33,7 +34,7 @@ public class PostRepository
                         doc.GetValue<string>("content"),
                         doc.GetValue<int>("commentCount"),
                         doc.GetValue<int>("likeCount"),
-                        doc.GetValue<HashSet<string>>("likeUserEmails"),
+                        new HashSet<string>(doc.GetValue<List<string>>("likeUserEmails")),
                         doc.GetValue<Timestamp>("createdAt").ToDateTime(),
                         doc.GetValue<bool>("isModified")
                     );
@@ -68,8 +69,8 @@ public class PostRepository
                     doc.GetValue<string>("authorNickname"),
                     doc.GetValue<string>("content"),
                     doc.GetValue<int>("commentCount"),
-                    doc.GetValue<int>("likeCount"),
-                    doc.GetValue<HashSet<string>>("likeUserEmails"),
+                    doc.GetValue<int>("likeCount"), 
+                    new HashSet<string>(doc.GetValue<List<string>>("likeUserEmails")),
                     doc.GetValue<Timestamp>("createdAt").ToDateTime(),
                     doc.GetValue<bool>("isModified")
                 );

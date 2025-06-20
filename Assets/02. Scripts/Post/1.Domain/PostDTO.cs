@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Firebase.Firestore;
 
@@ -48,12 +48,6 @@ public class PostDTO
     public Post ToDomain()
     {
         var post = new Post(Id, AuthorEmail, AuthorNickname, Content, CommentCount, CreatedAt);
-
-        // 댓글 수 복원
-        for (int i = 0; i < CommentCount; i++)
-        {
-            post.IncreaseCommentCount();
-        }
         
         // 좋아요 목록 복원
         foreach (var email in LikeUserEmails)
