@@ -9,12 +9,7 @@ public class UI_Comment : MonoBehaviour
     [SerializeField] private GameObject _slotParent;
     [SerializeField] private UI_CommentDetailScreen _commentDetailScreen;
     [SerializeField] private TMP_InputField _commentInputField;
-    private List<UI_CommentSlot> _commentSlotList;
-
-    public void Start()
-    {
-        _commentSlotList = new List<UI_CommentSlot>();
-    }
+    private List<UI_CommentSlot> _commentSlotList = new List<UI_CommentSlot>();
 
     [ContextMenu("REFRESH")]
     public void OnClickRefresh()

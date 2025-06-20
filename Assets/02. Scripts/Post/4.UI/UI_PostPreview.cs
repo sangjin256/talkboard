@@ -20,7 +20,7 @@ public class UI_PostPreview : MonoBehaviour
         _commmentCountText.text = post.CommentCount.ToString();
     }
     
-    public void OnClickContentPreview()
+    public void OnClickPostPreview()
     {
         Debug.Log("Clicked on content preview: " + _post.Id);
         UI_Manager.Instance.OnClickContentPreview(_post);
