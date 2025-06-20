@@ -633,6 +633,9 @@ MonoBehaviour:
   _contentText: {fileID: 3898708065393959638}
   _likeCountText: {fileID: 6326259419738599953}
   _commmentCountText: {fileID: 679177857273631976}
+  _likeImage: {fileID: 1454412327076914469}
+  _redHeartSprite: {fileID: 21300000, guid: b22311d9a2ebd8c4caf3aae8868f6dc5, type: 3}
+  _whiteHeartSprite: {fileID: 21300000, guid: a5c7fa23735a8004cb3d5f376143fb76, type: 3}
 --- !u!222 &6795460206775682202
 CanvasRenderer:
   m_ObjectHideFlags: 0
