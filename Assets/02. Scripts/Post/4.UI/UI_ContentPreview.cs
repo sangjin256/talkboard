@@ -23,5 +23,6 @@ public class UI_ContentPreview : MonoBehaviour
     public void OnClickContentPreview()
     {
         Debug.Log("Clicked on content preview: " + _post.Id);
+        UI_Manager.Instance.OnClickContentPreview(_post);
     }
 }
