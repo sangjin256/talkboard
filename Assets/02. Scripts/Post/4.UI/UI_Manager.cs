@@ -54,6 +54,11 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     
     public void OnClickEditPostButton()
     {
+        if (AccountManager.Instance.CurrencAccount.Email != _post.AuthorEmail)
+        {
+            SetNotification("본인이 작성한 게시글만 수정할 수 있습니다.");
+            return;
+        }
         EditPostPostPanel.gameObject.SetActive(true);
     }
     
