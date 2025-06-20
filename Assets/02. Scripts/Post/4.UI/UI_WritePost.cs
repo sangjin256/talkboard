@@ -19,10 +19,10 @@ public class UI_WritePost : MonoBehaviour
 
         if (result.IsSuccess)
         {
+            await UI_Manager.Instance.Board.UpdatePostPreviewList();
             UI_Manager.Instance.SetNotification("게시글이 등록되었습니다.");
             _inputField.text = string.Empty;
             gameObject.SetActive(false);
-            await UI_Manager.Instance.Board.UpdatePostPreviewList();
         }
         else
         {
