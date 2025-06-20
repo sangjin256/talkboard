@@ -39,4 +39,9 @@ public class UI_Post : MonoBehaviour
         UI_Manager.Instance.Board.UpdatePostPreviewList();
         gameObject.SetActive(false);
     }
+
+    public void OnClickOptionButton()
+    {
+        UI_Manager.Instance.PostDetailScreen.SetActive(true);
+    }
 }

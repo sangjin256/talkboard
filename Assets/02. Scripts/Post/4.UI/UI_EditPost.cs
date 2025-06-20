@@ -1,9 +1,18 @@
+using System;
 using UnityEngine;
 using TMPro;
 
 public class UI_EditPost : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _inputField;
+
+    public void OnEnable()
+    {
+        if (UI_Manager.Instance.Post != null)
+        {
+            _inputField.text = UI_Manager.Instance.Post.Content;
+        }
+    }
 
     public async void OnClickEditPostButton()
     {
@@ -28,6 +37,7 @@ public class UI_EditPost : MonoBehaviour
         else
         {
             UI_Manager.Instance.SetNotification(result.Message);
+            return;
         }
     }
     
