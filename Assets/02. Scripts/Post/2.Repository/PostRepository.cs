@@ -52,19 +52,35 @@ public class PostRepository
     {
         try
         {
-            var doc = await PostCollection.Document(postId).GetSnapshotAsync();
+            DocumentSnapshot doc = await PostCollection.Document(postId).GetSnapshotAsync();
             if (!doc.Exists)
             {
                 Debug.LogWarning($"게시글 조회 실패: ID({postId}) 존재하지 않음");
                 return null;
             }
-            return doc.ConvertTo<PostDTO>();
+            try
+            {
+                PostDTO post = new PostDTO(
+                    doc.Id,
+                    doc.GetValue<string>("authorEmail"),
+                    doc.GetValue<string>("authorNickname"),
+                    doc.GetValue<string>("content"),
+                    doc.GetValue<int>("commentCount"),
+                    doc.GetValue<Timestamp>("createdAt").ToDateTime(),
+                    doc.GetValue<bool>("isModified")
+                );
+                return post;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"게시글 변환 실패: {e.Message}");
+            }
         }
         catch (Exception e)
         {
             Debug.LogError($"게시글 조회 실패: {e.Message}");
-            return null;
         }
+        return null;
     }
 
     public async Task<bool> AddPostAsync(PostDTO post)

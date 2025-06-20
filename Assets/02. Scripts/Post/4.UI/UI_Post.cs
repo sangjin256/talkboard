@@ -44,4 +44,18 @@ public class UI_Post : MonoBehaviour
     {
         UI_Manager.Instance.PostDetailScreen.SetActive(true);
     }
+
+    public async Task RefreshPost()
+    {
+        PostDTO refreshedPost = await PostManager.Instance.GetPostById(_post.Id);
+        
+        if (refreshedPost != null)
+        {
+            UpdateContent(refreshedPost);
+        }
+        else
+        {
+            UI_Manager.Instance.SetNotification("게시글 새로고침에 실패했습니다.");
+        }
+    }
 }
