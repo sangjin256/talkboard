@@ -15,6 +15,7 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
         
         _postPanel.UpdateContent(post);
         _commentPanel.Refresh();
+        Debug.Log("CommentPanel 초기화 됐나요?");
         _postPanel.gameObject.SetActive(true);
     }
  
@@ -26,5 +27,10 @@ public class UI_Manager : BehaviourSingleton<UI_Manager>
     public void RefreshComments()
     {
         _commentPanel.Refresh();
+    }
+
+    public void OnClickWriteButton()
+    {
+        
     }
 }

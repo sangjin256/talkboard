@@ -15,11 +15,6 @@ public class UI_Post : MonoBehaviour
     
     private PostDTO _post;
 
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
-    
     public void UpdateContent(PostDTO post)
     {
         _post = post;
