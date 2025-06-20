@@ -67,7 +67,7 @@ public class PostManager : BehaviourSingleton<PostManager>
         }
 
         bool success = await _repository.DeletePostAsync(post.ToDTO());
-        return new Result(success, success ? "게시글 삭제 완료" : "게시글 삭제 실패");
+        return new Result(success, success ? "게시글 삭제 완료" : "본인이 작성한 게시글만 수정할 수 있습니다.");
     }
 
     // 게시글 목록 가져오기

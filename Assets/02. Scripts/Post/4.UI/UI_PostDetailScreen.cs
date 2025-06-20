@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UI_PostDetailScreen : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class UI_PostDetailScreen : MonoBehaviour
         }
         else
         {
-            UI_Manager.Instance.SetNotification("게시글 삭제에 실패했습니다.");
+            UI_Manager.Instance.SetNotification("본인이 작성한 게시글만 삭제할 수 있습니다.");
         }
         gameObject.SetActive(false);
     }
