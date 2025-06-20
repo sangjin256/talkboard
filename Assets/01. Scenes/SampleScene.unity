@@ -6313,6 +6313,9 @@ MonoBehaviour:
   _contentText: {fileID: 1993104936}
   _likeCountText: {fileID: 2145949798}
   _commentCountText: {fileID: 106503092}
+  _likeButton: {fileID: 578347356}
+  _redHeartSprite: {fileID: 21300000, guid: b22311d9a2ebd8c4caf3aae8868f6dc5, type: 3}
+  _whiteHeartSprite: {fileID: 21300000, guid: a5c7fa23735a8004cb3d5f376143fb76, type: 3}
 --- !u!1 &1993104934
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,9 @@ public class UI_Post : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _contentText;
     [SerializeField] private TextMeshProUGUI _likeCountText;
     [SerializeField] private TextMeshProUGUI _commentCountText;
+    [SerializeField] private Button _likeButton;
+    [SerializeField] private Sprite _redHeartSprite;
+    [SerializeField] private Sprite _whiteHeartSprite;
     
     private PostDTO _post;
 
@@ -32,6 +35,14 @@ public class UI_Post : MonoBehaviour
         _contentText.text = _post.Content;
         _likeCountText.text = _post.LikeCount.ToString();
         _commentCountText.text = $"댓글({_post.CommentCount.ToString()})";
+        if (post.LikeUserEmails.Contains(AccountManager.Instance.CurrencAccount.Email))
+        {
+            _likeButton.image.sprite = _redHeartSprite;
+        }
+        else
+        {
+            _likeButton.image.sprite = _whiteHeartSprite;
+        }
     }
 
     public void OnClickBackButton()
