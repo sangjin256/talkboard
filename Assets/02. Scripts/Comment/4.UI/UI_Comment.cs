@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using System.Threading.Tasks;
 
 public class UI_Comment : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class UI_Comment : MonoBehaviour
         Refresh();
     }
 
-    public async void Refresh()
+    public async Task Refresh()
     {
         string postId = UI_Manager.Instance.Post.Id;
         List<CommentDTO> commentList = await CommentManager.Instance.GetAllCommentsOrderbyTime(postId);
@@ -43,6 +44,8 @@ public class UI_Comment : MonoBehaviour
             }
             else _commentSlotList[i].gameObject.SetActive(false);
         }
+
+        await Task.Yield();
     }
 
     public async void OnClickAddCommentButton()
@@ -57,8 +60,10 @@ public class UI_Comment : MonoBehaviour
         else
         {
             _commentInputField.text = string.Empty;
-            Refresh();
+            await Refresh();
+            UI_Manager.Instance.ForceUpdateCanvas();
+            await Task.Yield();
+            await UI_Manager.Instance.SetCommentScrollVerticalPoint(true);
         }
-
     }
 }
